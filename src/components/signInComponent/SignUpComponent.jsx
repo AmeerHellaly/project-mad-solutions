@@ -186,9 +186,8 @@ const SignUpPage = () => {
         <FormControl  sx={{ m: 1, minWidth: 300 }}>
             <InputLabel id='country'>COUNTRY</InputLabel>
             <Select label="Country">
-        
+
             </Select>
-            
         </FormControl>
         <FormControl  sx={{ m: 1, minWidth: 300 }}>
             <InputLabel id='country'>CITY</InputLabel>
@@ -196,8 +195,9 @@ const SignUpPage = () => {
             </Select>
         </FormControl>
         </Box>
-       
+        <Link to='/verfication' style={{width:'300px'}}>
         <Button 
+          
           variant="contained"
           fullWidth
           sx={{
@@ -215,16 +215,10 @@ const SignUpPage = () => {
         >
           CREATE ACCOUNT
         </Button>
+        </Link>
+     
 
-        <Box sx={{ display: 'flex', justifyContent: 'center', maxWidth: '400px', width: '100%' }}>
-            <Typography>
-            Already have an account? {""}
-            <Link to="/login" style={{ textDecoration: 'none', color: '#0E7E83' }}>
-            Login
-            </Link>
-            </Typography>
-         
-        </Box>
+        
       </Box>
     </Box>
     </>
