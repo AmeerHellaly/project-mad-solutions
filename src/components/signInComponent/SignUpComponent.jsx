@@ -34,29 +34,35 @@ const SignUpPage = () => {
           
         }}
       >
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '250px',
-            height: '250px',
-            backgroundColor: 'rgba(255, 255, 255, 0.7)',
-            borderRadius: '50%',
-            textAlign: 'center',
-          }}
-        >
-          <Box
-            component="img"
-            src={LogoImage}
-            alt="logo"
-            sx={{ width: '100px', height: '100px', marginBottom: '1rem' }}
-          />
-          <Typography variant="h6" sx={{ fontWeight: '700', fontSize: '16px' }}>
-            THE CONSTRUCTION AND LANDSCAPING COMPANY
-          </Typography>
-        </Box>
+       <Box sx={{
+             width: '350px',
+             height: '350px',
+            display:'flex',
+            flexDirection:'column',
+            alignItems:'center',
+            justifyContent:'center',
+            backgroundColor: 'rgba(255,255,255,0.6)',
+            borderRadius:'50%',
+            position:'relative',
+            zIndex:'2'
+        }}>
+        <Box component={'img'} src={LogoImage} 
+        sx={{
+            width:'120px',
+            height:'120px',
+            mb:'10px' 
+        }}/>
+        <Typography sx={{
+        fontFamily:'Inter',
+        fontWeight:500,
+        fontSize:'18px',
+        textAlign:'center',
+        color:'#000',
+        textTransform:'uppercase'
+        }}>
+        The Construction and landscaping company
+        </Typography>
+         </Box>
       </Box>
       
       <Box

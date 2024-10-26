@@ -3,7 +3,7 @@ import { Avatar, Box, Grid, Stack, Typography } from '@mui/material';
 import backimg from '../../assets/images/photo_2024-10-21_15-05-08.jpg'
 import profileImage from '../../assets/images/profile.jpg'
 
-const ContentProfile = () => {
+const   ContentProfile = () => {
   return (
     <div>
  <Grid item xs={12} style={{ 

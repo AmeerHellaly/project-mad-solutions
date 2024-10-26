@@ -5,7 +5,7 @@ const LastContent = () => {
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down('md'));
   return (
     <div>
-        <Grid container style={{ minHeight: '39.3vh', width: "100%" }}>
+        <Grid container style={{ minHeight: '41.2vh', width: "100%" }}>
       {/* Left Section */}
       <Grid item xs={12} md={5} style={{ backgroundColor: 'white', minHeight: '39vh', position: "relative" }}>
         <Box component={'img'} src={paleImage} style={{

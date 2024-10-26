@@ -6,7 +6,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import KeyIcon from '@mui/icons-material/Key';
 const ChangePassword = () => {
   return (
-    <Box sx={{display:'flex',flexDirection:{sm:'column',md:'row'},minHeight: '100vh',}}>
+      <>
          <AppBar>
       <Toolbar  sx={{
           position: 'absolute',
@@ -19,6 +19,13 @@ const ChangePassword = () => {
       </AppBar>
 
     {/* right section */}
+    <Box
+        sx={{
+          display: 'flex',
+          height: '100vh', 
+          overflow: 'hidden', 
+        }}
+      >
     <Box 
         sx={{ 
           flex: 1, 
@@ -147,7 +154,8 @@ const ChangePassword = () => {
          }}>Send Code</Button>
         </Box>
         </Box>
-    </Box>
+        </Box>
+        </>
   )
 }
 

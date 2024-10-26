@@ -19,11 +19,11 @@ const Floors = () => {
     const productFloor = [
       { shade: 'LightShade', type: 'ButterscotchOak', image: Image1 },
       { shade: 'DarkShade', type: 'ButterscotchOak', image: Image2 },
-      { shade: 'Shade', type: '#Type', image: Image3 },
-      { shade: 'Shade', type: '#Type', image: Image4 },
-      { shade: 'Shade', type: '#Type', image: Image5 },
-      { shade: 'Shade', type: '#Type', image: Image6 },
-      { shade: 'Shade', type: '#Type', image: Image7 },
+      { shade: 'Shade', type: 'ghfhy', image: Image3 },
+      { shade: 'Shade', type: 'Type', image: Image4 },
+      { shade: 'Shade', type: 'Type', image: Image5 },
+      { shade: 'Shade', type: 'Type', image: Image6 },
+      { shade: 'Shade', type: 'Type', image: Image7 },
     ];
   
     const settings = {

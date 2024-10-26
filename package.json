@@ -1,7 +1,7 @@
 {
   "name": "project-madsolution",
   "version": "0.1.0",
-  "homepage": "https://github.com/AmeerHellaly/project-mad-solutions",
+  "homepage": "https://ameerhellaly.github.io/project-mad-solutions",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.13.3",

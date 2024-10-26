@@ -13,7 +13,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import LogoImage from '../../assets/images/logo.png';
 import {  Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-
+import CloseIcon from '@mui/icons-material/Close';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -55,106 +56,62 @@ const Search = styled('div')(({ theme }) => ({
     },
   }));
 const NavbarProfile = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down('lg')); // Check if the screen is medium or small
+
+  const handleMenuClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
   
-    const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  
-    const handleProfileMenuOpen = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-  
-    const handleMobileMenuClose = () => {
-      setMobileMoreAnchorEl(null);
-    };
-  
-    const handleMenuClose = () => {
-      setAnchorEl(null);
-      handleMobileMenuClose();
-    };
-  
-    const handleMobileMenuOpen = (event) => {
-      setMobileMoreAnchorEl(event.currentTarget);
-    };
-  
-    const menuId = 'primary-search-account-menu';
-    const renderMenu = (
-     ''
-    );
+
   
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
       <Menu
-        anchorEl={mobileMoreAnchorEl}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        id={mobileMenuId}
-        keepMounted
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        open={isMobileMenuOpen}
-        onClose={handleMobileMenuClose}
-      >
-        <MenuItem>
-          
-          <p style={{textTransform:'uppercase'}}>Home</p>
-        </MenuItem>
-        <MenuItem>
-     
-          <p style={{textTransform:'uppercase'}}>About</p>
-        </MenuItem>
-        <MenuItem onClick={handleProfileMenuOpen}>
-          
-          <p style={{textTransform:'uppercase'}}>Projects</p>
-        </MenuItem>
-        <MenuItem onClick={handleProfileMenuOpen}>
-          
-          <Link style={{textDecoration:'none',color:'#000'}} to={'/landscaping'}>
-          <p style={{textTransform:'uppercase'}}>landscaping</p>
-          </Link>
-        </MenuItem>
-        <MenuItem onClick={handleProfileMenuOpen}>
-          
-          <p style={{textTransform:'uppercase'}}>decking</p>
-        </MenuItem>
-        <MenuItem onClick={handleProfileMenuOpen}>
-          
-          <p style={{textTransform:'uppercase'}}>interlocking</p>
-        </MenuItem>
-        <MenuItem onClick={handleProfileMenuOpen}>
-          
-          <p style={{textTransform:'uppercase'}}>floral design</p>
-        </MenuItem>
-        <MenuItem onClick={handleProfileMenuOpen}>
-          
-          <p style={{textTransform:'uppercase'}}>pools</p>
-        </MenuItem>
-        <MenuItem onClick={handleProfileMenuOpen}>
-          
-          <p style={{textTransform:'uppercase'}}>railings</p>
-        </MenuItem>
-        <MenuItem onClick={handleProfileMenuOpen}>
-          
-          <p style={{textTransform:'uppercase'}}>woodwoorking</p>
-        </MenuItem>
-        <MenuItem onClick={handleProfileMenuOpen}>
-          
-          <p style={{textTransform:'uppercase'}}>showroom</p>
-        </MenuItem>
-        <MenuItem onClick={handleProfileMenuOpen}>
-          
-          <p style={{textTransform:'uppercase'}}>profile</p>
-        </MenuItem>
-        <MenuItem onClick={handleProfileMenuOpen}>
-          
-          <p style={{textTransform:'uppercase'}}>contact us</p>
-        </MenuItem>
-      </Menu>
+      anchorEl={anchorEl}
+      open={open}
+      onClose={handleMenuClose}
+      PaperProps={{
+        sx: {
+          padding: '16px',
+          textTransform: "uppercase",
+        },
+      }}
+    >
+      {/* Close Button inside the menu */}
+      <Box sx={{ display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
+        <IconButton onClick={handleMenuClose}>
+          <CloseIcon sx={{ color: "#000" }} />
+        </IconButton>
+      </Box>
+      <Link style={{textDecoration:'none',color:'#000'}} to={'/landscaping'}>
+      <MenuItem onClick={handleMenuClose}>landscaping</MenuItem>
+      </Link>
+      <MenuItem onClick={handleMenuClose}>decking</MenuItem>
+      <MenuItem onClick={handleMenuClose}>gardening</MenuItem>
+      <MenuItem onClick={handleMenuClose}>interlocking</MenuItem>
+      <MenuItem onClick={handleMenuClose}>floral design</MenuItem>
+      <MenuItem onClick={handleMenuClose}>pools</MenuItem>
+      <MenuItem onClick={handleMenuClose}>railings</MenuItem>
+      <MenuItem onClick={handleMenuClose}>woodworking</MenuItem>
+      <MenuItem onClick={handleMenuClose}>showroom</MenuItem>
+      <MenuItem onClick={handleMenuClose}>profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>contact us</MenuItem>
+
+      {isSmallScreen && (
+        <>
+          <MenuItem onClick={handleMenuClose}>home</MenuItem>
+          <MenuItem onClick={handleMenuClose}>about us</MenuItem>
+          <MenuItem onClick={handleMenuClose}>projects</MenuItem>
+        </>
+      )}
+    </Menu>
     );
   
   return (
@@ -193,13 +150,13 @@ const NavbarProfile = () => {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
-          <IconButton color='inherit'
-          size="large"
-          aria-label="menu"
-          onClick={handleMobileMenuOpen }
-          aria-haspopup="true"
-          aria-controls={mobileMenuId} >
-            <MenuIcon />
+            <IconButton color='inherit'
+            size="large"
+            aria-label="menu"
+            onClick={handleMenuClick }
+            aria-haspopup="true"
+            aria-controls={mobileMenuId} >
+              <MenuIcon />
             </IconButton>
             <Typography sx={{fontWeight:700,fontFamily:'Inter',fontSize:'18px'}}>Menu</Typography>
             <Button variant='contained' sx={{backgroundColor:'#59ED9F',display: { xs: 'none', sm: 'none', lg: 'block' } ,ml:'10px',color:'#000',borderRadius:'10px',border:'3px solid #fff',fontWeight:700}}>Book now</Button>
@@ -207,7 +164,7 @@ const NavbarProfile = () => {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
+
     </Box>
     </div>
   )

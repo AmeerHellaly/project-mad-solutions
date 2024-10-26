@@ -7,7 +7,7 @@ import ContactUs from './contact-us/ContactUs'
 
 const BussniesExhibtion = () => {
   return (
-    <Grid container    style={{paddingTop:'0px',paddingBottom:'2rem'}}>
+    <Grid container  backgroundColor='#0E7E83'   style={{paddingTop:'0px',paddingBottom:'2rem'}}>
         <Heading backgroundColor={'#0E7E83'} text={'Business exhibition'}/>
         <Grid container item xs={12} justifyContent="space-around" spacing={0} >
             <Interior/>
