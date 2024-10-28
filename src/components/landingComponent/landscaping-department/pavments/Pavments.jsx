@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Grid, Typography } from '@mui/material'
+import { Box, Button, Grid, Typography,useTheme } from '@mui/material'
 import ReacImage from '../../../../assets/images/Rectangle2.png'
 import vectorImage from '../../../../assets/images/Vector.png'
 import Slider from 'react-slick'
@@ -10,6 +10,9 @@ import Imag2 from '../../../../assets/images/image-pavements2.png'
 import Imag3 from '../../../../assets/images/image-pavements3.png'
 import Imag4 from '../../../../assets/images/image-pavements4.png'
 const Pavments = () => {
+    const theme=useTheme()
+    const isDarkMode = theme.palette.mode === 'dark';
+    const textColor=isDarkMode?'#FFFFFF':'#121C17';
     const ImagePavements=[
         {image:Imag1},
         {image:Imag2},
@@ -40,7 +43,7 @@ const Pavments = () => {
   return (
     <Grid container spacing={2} sx={{marginBottom:'10px'}}>
     <Grid item xs={12} sm={6}>
-               <Typography variant='h6' sx={{fontWeight:'bold',color:"#121C17",textTransform:'uppercase'}}>
+               <Typography variant='h6' sx={{fontWeight:'bold',color:textColor,textTransform:'uppercase'}}>
                   Pavements
                    <Box 
                    component={'img'} 
@@ -64,7 +67,7 @@ const Pavments = () => {
                </Button>
        </Grid>
        <Grid item xs={12} >
-                <Slider {...settings}>
+                <Slider  className={isDarkMode ? "slider-dark" : "slider-light"} {...settings}>
                        {ImagePavements.map((product,index)=>(
                            <div key={index} padding={'0 10px '}>
                                <Box sx={{

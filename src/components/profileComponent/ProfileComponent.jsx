@@ -6,12 +6,12 @@ import { Box } from '@mui/material';
 
 
 
-export default function PrimarySearchAppBar() {
+export default function ProfileComponent({setMyMode}) {
   return (
     <Box sx={{
       height:"100vh"
     }}>
-      <NavbarProfile/>
+      <NavbarProfile setMyMode={setMyMode}/>
       <ContentProfile/>
       <LastContent/>
     </Box>

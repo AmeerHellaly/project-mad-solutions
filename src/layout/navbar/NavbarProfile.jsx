@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useTransition } from 'react'
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -15,7 +15,14 @@ import {  Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
 import useMediaQuery from '@mui/material/useMediaQuery';
-
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import { useTranslation } from 'react-i18next';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import { useTheme } from '@mui/material/styles';
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -55,7 +62,16 @@ const Search = styled('div')(({ theme }) => ({
       },
     },
   }));
-const NavbarProfile = () => {
+const NavbarProfile = ({setMyMode}) => {
+  const toggleMode = () => {
+    setMyMode(prevMode => (prevMode === "light" ? "dark" : "light"));
+  };
+  const theme = useTheme()
+  const [t,i18next]=useTranslation()
+  const changeLanguage=(language)=>{
+    i18next.changeLanguage(language)
+    localStorage.setItem('language',language)
+  }
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down('lg')); // Check if the screen is medium or small
@@ -73,6 +89,9 @@ const NavbarProfile = () => {
   
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
+      <div>
+   
+      
       <Menu
       anchorEl={anchorEl}
       open={open}
@@ -84,8 +103,16 @@ const NavbarProfile = () => {
         },
       }}
     >
-      {/* Close Button inside the menu */}
-      <Box sx={{ display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
+            <Accordion>
+        <AccordionSummary
+          expandIcon={<ArrowDownwardIcon />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+          <Typography>Menu</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+        <Box sx={{ display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
         <IconButton onClick={handleMenuClose}>
           <CloseIcon sx={{ color: "#000" }} />
         </IconButton>
@@ -111,9 +138,30 @@ const NavbarProfile = () => {
           <MenuItem onClick={handleMenuClose}>projects</MenuItem>
         </>
       )}
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+          <AccordionSummary  expandIcon={<ArrowDownwardIcon />}
+          aria-controls="panel1-content"
+          id="panel1-header">
+              <Typography>Languages</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+              <Button onClick={()=>changeLanguage('en')}>English</Button><br/>
+              <Button onClick={()=>changeLanguage('ar')}>Arabic</Button>
+              <MenuItem>
+                D/L Mode
+                <IconButton onClick={toggleMode} color="inherit" sx={{ ml: 2 }}>
+                  {theme.palette.mode === 'dark' ? <WbSunnyIcon sx={{color:"yellow"}}/> : <DarkModeIcon />}
+                </IconButton>
+              </MenuItem>
+          </AccordionDetails>
+      </Accordion>
+      {/* Close Button inside the menu */}
+
     </Menu>
+    </div>
     );
-  
   return (
     <div>
        <Box sx={{ flexGrow: 1 }}>

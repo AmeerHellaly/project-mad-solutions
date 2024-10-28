@@ -4,7 +4,10 @@ import BackgroundImage from '../../assets/images/Rectangle11.png'
 import EmailIcon from '@mui/icons-material/Email';
 import KeyIcon from '@mui/icons-material/Key';
 import {Link} from 'react-router-dom'
+import { useTranslation } from 'react-i18next';
 const LoginComponent = () => {
+  const [t]=useTranslation()
+  // const { t,i18n } =useTranslation()
   return (
     <>
       <AppBar position="static" sx={{ backgroundColor: '#074143' }}>
@@ -25,7 +28,6 @@ const LoginComponent = () => {
           display:'flex',
           alignItems:'center',
           justifyContent:'center',
-          backgroundColor: '#EEF9F3',
           padding:'2rem'
         }}>
           <Box sx={{width:'100%',maxWidth:'400px',textAlign:'center'}}>
@@ -36,7 +38,7 @@ const LoginComponent = () => {
             textTransform:'uppercase',
             mb:2,
             
-            }}>Welcome</Typography>
+            }}>{t("welcome")}</Typography>
             <Typography sx={{
             fontFamily:'Lato',
             fontWeight:700,
@@ -75,19 +77,19 @@ const LoginComponent = () => {
             },
           }} 
          />
-         <Typography sx={{ textAlign:'center',textTransform:'uppercase' }} >
+         <Typography sx={{ textAlign:'center',textTransform:'uppercase'}} >
             Don't have an account?{' '}
             <Link style={{textDecoration:'none',color:'#0E7E83'}} to="/sign-up" underline="hover">
               Sign Up
             </Link>
           </Typography>
-          <Typography sx={{mt:2,textAlign:'center',textTransform:'uppercase' }}>
+          <Typography sx={{mt:2,textAlign:'center',textTransform:'uppercase' ,}}>
             Forgot password?{' '}
             <Link style={{textDecoration:'none',color:'#0E7E83'}} to="/change-password" underline="hover">
               Change Password
             </Link>
           </Typography>
-          <Link to='/profile'>
+          <Link style={{textDecoration:'none'}} to='/profile'>
             <Button
               fullWidth
               variant="contained"

@@ -1,9 +1,9 @@
 import React from 'react'
 import ProfileComponent from '../../components/profileComponent/ProfileComponent'
-const ProfilePage = () => {
+const ProfilePage = ({setMyMode}) => {
   return (
     <div>
-      <ProfileComponent/>
+      <ProfileComponent setMyMode={setMyMode}/>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Grid, Typography } from '@mui/material'
+import { Box, Button, Grid, Typography,useTheme } from '@mui/material'
 import ReacImage from '../../../../assets/images/Rectangle2.png'
 import vectorImage from '../../../../assets/images/Vector.png'
 import Slider from 'react-slick'
@@ -9,7 +9,11 @@ import Imag1 from '../../../../assets/images/image-shrubs1.png'
 import Imag2 from '../../../../assets/images/image-shrubs2.png'
 import Imag3 from '../../../../assets/images/image-shrubs3.png'
 import Imag4 from '../../../../assets/images/image-shrubs4.png'
+import "../../../../assets/theme/darkmode/sliders.css"
 const Shrubs = () => {
+    const theme=useTheme()
+    const isDarkMode = theme.palette.mode === 'dark';
+    const textColor=isDarkMode?'#FFFFFF':'#121C17';
     const ImageShrubs=[
         {image:Imag1},
         {image:Imag2},
@@ -40,7 +44,7 @@ const Shrubs = () => {
   return (
     <Grid container spacing={2} sx={{marginBottom:'10px'}}>
     <Grid item xs={12} sm={6}>
-               <Typography variant='h6' sx={{fontWeight:'bold',color:"#121C17",textTransform:'uppercase'}}>
+               <Typography variant='h6' sx={{fontWeight:'bold',color:textColor,textTransform:'uppercase'}}>
                   Shrubs
                    <Box 
                    component={'img'} 
@@ -48,7 +52,7 @@ const Shrubs = () => {
                    sx={{position:'absolute',
                    left:0,
                    width: "30px",
-                   height: "30px"
+                   height: "30px",
                        }}/>
                </Typography>
                
@@ -64,7 +68,7 @@ const Shrubs = () => {
                </Button>
        </Grid>
        <Grid item xs={12} >
-                <Slider {...settings}>
+                <Slider   className={isDarkMode ? "slider-dark" : "slider-light"}  {...settings}>
                        {ImageShrubs.map((product,index)=>(
                            <div key={index} padding={'0 10px '}>
                                <Box sx={{

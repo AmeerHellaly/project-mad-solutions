@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Grid, Typography } from '@mui/material'
+import { Box, Button, Grid, Typography,useTheme } from '@mui/material'
 import ReacImage from '../../../../assets/images/Rectangle1.png'
 import vectorImage from '../../../../assets/images/Vector.png'
 import Slider from 'react-slick'
@@ -9,7 +9,14 @@ import Image1 from '../../../../assets/images/image-faucets1.png'
 import Image2 from '../../../../assets/images/Image-faucets2.png'
 import Image3 from '../../../../assets/images/Image-faucets3.png'
 import Image4 from '../../../../assets/images/Image-faucets4.png'
+import "../../../../assets/theme/darkmode/sliders.css"
 const Faucets = () => {
+    const theme=useTheme()
+    const isDarkMode = theme.palette.mode === 'dark';
+    const textColor=isDarkMode?'#FFFFFF':'#121C17';
+    const iconColorFilter = isDarkMode 
+    ? 'brightness(0) saturate(100%) invert(14%) sepia(90%) saturate(749%) hue-rotate(133deg) brightness(100%) contrast(102%)' 
+    : 'none';
     const ProductsFaucte=[
         {shade:'Light Shade',type:' Butterscotch Oak',image:Image1},
         {shade:'Dark Shade',type:' Butterscotch Oak',image:Image2},
@@ -40,7 +47,7 @@ const Faucets = () => {
   return (
     <Grid container spacing={2} sx={{marginBottom:'10px'}}>
     <Grid item xs={12} sm={6}>
-               <Typography variant='h6' sx={{fontWeight:'bold',color:"#121C17",textTransform:'uppercase'}}>
+               <Typography variant='h6' sx={{fontWeight:'bold',color:textColor,textTransform:'uppercase'}}>
                   Faucetes
                    <Box 
                    component={'img'} 
@@ -48,7 +55,8 @@ const Faucets = () => {
                    sx={{position:'absolute',
                    left:0,
                    width: "30px",
-                   height: "30px"
+                   height: "30px",
+                   filter:iconColorFilter
                        }}/>
                </Typography>
                
@@ -64,7 +72,7 @@ const Faucets = () => {
                </Button>
        </Grid>
        <Grid item xs={12} >
-                <Slider {...settings}>
+                <Slider {...settings} className={isDarkMode ? "slider-dark" : "slider-light"}>
                        {ProductsFaucte.map((product,index)=>(
                            <div key={index} padding={'0 10px '}>
                                <Box sx={{

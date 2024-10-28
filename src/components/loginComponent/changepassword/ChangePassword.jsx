@@ -74,7 +74,6 @@ const ChangePassword = () => {
             display:'flex',
             alignItems:'center',
             justifyContent:'center',
-            backgroundColor: '#EEF9F3',
             padding:'2rem'
 
         }}>

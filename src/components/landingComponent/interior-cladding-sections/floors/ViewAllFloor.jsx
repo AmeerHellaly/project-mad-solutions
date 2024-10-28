@@ -9,7 +9,7 @@ import Image4 from '../../../../assets/images/Image-floor4.png'
 import Image5 from '../../../../assets/images/Image-floor5.png'
 import Image6 from '../../../../assets/images/Image-floor6.png'
 import Image7 from '../../../../assets/images/Image-floor7.png'
-const ViewAllFloor = () => {
+const ViewAllFloor = ({setMyMode}) => {
     const productFloor=[
         {shade:'Light Shade',type:' Butterscotch Oak',image:Image1},
         {shade:'Dark Shade',type:' Butterscotch Oak',image:Image2},
@@ -22,7 +22,7 @@ const ViewAllFloor = () => {
     ]
   return (
     <div>
-        <NavbarProfile/>
+        <NavbarProfile setMyMode={setMyMode}/>
         <Heading backgroundColor={'lightblue'} text={'floors'}/>
         <Grid container spacing={2}>
                 {productFloor.map((product,index)=>(

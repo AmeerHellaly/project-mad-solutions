@@ -7,7 +7,8 @@ import ProfilePage from "../pages/profilePage/ProfilePage";
 import LandingPage from "../pages/landingPage/LandingPage";
 import ViewAllFloor from "../components/landingComponent/interior-cladding-sections/floors/ViewAllFloor";
 import FloorInformation from "../components/landingComponent/interior-cladding-sections/floors/FloorInformation";
-export const router=createHashRouter([
+import LandingComponent from "../components/landingComponent/LandingComponent";
+export const routes=(setMyMode)=>createHashRouter([
     {
         path:'',
         element:''
@@ -30,18 +31,18 @@ export const router=createHashRouter([
     },
     {
         path:'/profile',
-        element:<ProfilePage/>
+        element:<ProfilePage setMyMode={setMyMode}/>
     },
     {
         path:'/landscaping',
-        element:<LandingPage/>
+        element:<LandingPage setMyMode={setMyMode}/>
     },
     {
         path:'/landscaping/floors',
-        element:<ViewAllFloor/>
+        element:<ViewAllFloor setMyMode={setMyMode}/>
     },
     {
         path: '/floors/:shade/:type',
-        element:<FloorInformation/>
+        element:<FloorInformation setMyMode={setMyMode}/>
     }
 ])

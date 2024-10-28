@@ -1,9 +1,9 @@
 import React from 'react'
 import LandingComponent from '../../components/landingComponent/LandingComponent'
-const LandingPage = () => {
+const LandingPage = ({setMyMode}) => {
   return (
     <div>
-      <LandingComponent/>
+      <LandingComponent setMyMode={setMyMode} />
     </div>
   )
 }

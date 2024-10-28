@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Grid, Typography } from '@mui/material'
+import { Box, Button, Grid, Typography,useTheme } from '@mui/material'
 import Reactangle from '../../../../assets/images/Rectangle1.png'
 import veactorImage from '../../../../assets/images/Vector.png'
 import Slider from 'react-slick'
@@ -13,7 +13,14 @@ import Image5 from '../../../../assets/images/Image-floor5.png'
 import Image6 from '../../../../assets/images/Image-floor6.png'
 import Image7 from '../../../../assets/images/Image-floor7.png'
 import { Link, useNavigate } from 'react-router-dom'
+import "../../../../assets/theme/darkmode/sliders.css"
 const Floors = () => {
+    const theme=useTheme()
+    const isDarkMode = theme.palette.mode === 'dark';
+    const textColor=isDarkMode?'#FFFFFF':'#121C17';
+    const iconColorFilter = isDarkMode 
+    ? 'brightness(0) saturate(100%) invert(14%) sepia(90%) saturate(749%) hue-rotate(133deg) brightness(100%) contrast(102%)' 
+    : 'none';
     const navigate = useNavigate();
   
     const productFloor = [
@@ -54,12 +61,12 @@ const Floors = () => {
           <Grid item xs={12} sm={6}>
             <Typography
               variant="h6"
-              sx={{ fontWeight: 'bold', color: '#121C17', textTransform: 'uppercase' }}
+              sx={{ fontWeight: 'bold', color: textColor, textTransform: 'uppercase' }}
             >
               <Box
                 component={'img'}
                 src={Reactangle}
-                style={{ position: 'absolute', left: '0%', width: '30px', height: '30px' }}
+                style={{ position: 'absolute', left: '0%', width: '30px', height: '30px',filter:iconColorFilter }}
               />
               FLOORS
             </Typography>
@@ -73,7 +80,7 @@ const Floors = () => {
             </Link>
           </Grid>
           <Grid xs={12}>
-            <Slider {...settings}>
+            <Slider  {...settings}  className={isDarkMode ? "slider-dark" : "slider-light"}>
               {productFloor.map((item, idx) => (
                 <div key={idx} style={{ padding: '0 10px' }}>
                   <Link

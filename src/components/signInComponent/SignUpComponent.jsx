@@ -68,7 +68,6 @@ const SignUpPage = () => {
       <Box
         sx={{
           flex: 1,
-          backgroundColor: '#EEF9F3',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',

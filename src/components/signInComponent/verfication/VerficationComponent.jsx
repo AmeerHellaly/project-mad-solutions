@@ -1,10 +1,12 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Box, TextField, Button } from '@mui/material';
+import { AppBar, Toolbar, Typography, Box, TextField, Button,useTheme } from '@mui/material';
 import Ellipse1 from '../../../assets/images/Ellipse7.png'
 import Ellipse2 from '../../../assets/images/Ellipse8.png'
 import MessageImage from '../../../assets/images/morphis-mail-with-a-frosted-glass-effect-11.png'
-
 const VerficationComponent = () => {
+  const theme=useTheme()
+  const isDarkMode = theme.palette.mode === 'dark';
+  const textColor=isDarkMode?'#FFFFFF':'#121C17';
   return (
     <>
     <AppBar position="static"  sx={{backgroundColor:'#074143'}}>
@@ -15,7 +17,6 @@ const VerficationComponent = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        backgroundColor: '#f0f5f5',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -84,7 +85,7 @@ const VerficationComponent = () => {
             />
           ))}
         </Box>
-        <Typography variant="body2" sx={{fontWeight:700,fontFamily:'Inter',fontSize:'22px',mt: 2}} color="#121C17" >
+        <Typography variant="body2" sx={{fontWeight:700,fontFamily:'Inter',fontSize:'22px',mt: 2,color:textColor}}  >
           Valid for 3 minutes
         </Typography>
         <Button  sx={{mt:1,color:'#0E7E83'}}>Resend Code</Button>

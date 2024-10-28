@@ -6,10 +6,10 @@ import LandScaping from './landscaping-department/LandScaping'
 import AboutService from './about-service/AboutService'
 import BussniesExhibtion from './bussnies-exhibtion/BussniesExhibtion'
 import Footer from '../../layout/footer/Footer'
-const LandingComponent = () => {
+const LandingComponent =  ({setMyMode}) => {
   return (
     <div>
-      <NavbarProfile/>
+      <NavbarProfile setMyMode={setMyMode}/>
       <LandPageContent/>
       <InteriorClading/>
       <LandScaping/>

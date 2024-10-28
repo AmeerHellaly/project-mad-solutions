@@ -1,9 +1,12 @@
 import React from 'react'
-import { Avatar, Box, Grid, Stack, Typography } from '@mui/material';
+import { Avatar, Box, Grid, Stack, Typography,useTheme } from '@mui/material';
 import backimg from '../../assets/images/photo_2024-10-21_15-05-08.jpg'
 import profileImage from '../../assets/images/profile.jpg'
 
 const   ContentProfile = () => {
+  const theme=useTheme()
+  const isDarkMode = theme.palette.mode === 'dark';
+  const textColor=isDarkMode?'#FFFFFF':'#121C17';
   return (
     <div>
  <Grid item xs={12} style={{ 
@@ -36,7 +39,7 @@ const   ContentProfile = () => {
         <Stack direction={'row'} spacing={2}>
           <Avatar alt='Profile' sx={{width:150,height:150,border:'10px solid #14B05D'}} src={profileImage} />
         </Stack>
-        <Typography sx={{ border:"1px solid #000", borderRadius:"4px" }} variant='body1'>@Ameer Hellaly</Typography>
+        <Typography sx={{ border:"1px solid #000", borderRadius:"4px",color:textColor }} variant='body1'>@Ameer Hellaly</Typography>
       </Box>
 
 

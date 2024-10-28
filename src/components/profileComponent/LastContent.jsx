@@ -1,13 +1,16 @@
 import React from 'react'
-import { Grid, Box, Typography, Button ,useMediaQuery} from '@mui/material';
+import { Grid, Box, Typography, Button ,useMediaQuery,useTheme} from '@mui/material';
 import paleImage from '../../assets/images/pale-851.png';
 const LastContent = () => {
+  const theme=useTheme()
+  const isDarkMode = theme.palette.mode === 'dark';
+  const backGround=isDarkMode?'#000000':'#FFFFFF';
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down('md'));
   return (
     <div>
-        <Grid container style={{ minHeight: '41.2vh', width: "100%" }}>
+        <Grid container style={{ minHeight: '41.2vh', width: "100%", }}>
       {/* Left Section */}
-      <Grid item xs={12} md={5} style={{ backgroundColor: 'white', minHeight: '39vh', position: "relative" }}>
+      <Grid item xs={12} md={5} style={{ backgroundColor: backGround, minHeight: '39vh', position: "relative" }}>
         <Box component={'img'} src={paleImage} style={{
           position: "absolute",
           bottom: "0",
@@ -20,6 +23,7 @@ const LastContent = () => {
             flexDirection: "column",
             alignItems: "flex-end",
             margin: "50px",
+          
           }}>
             <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px", width: "150px", zIndex: "2" }}>
               Name

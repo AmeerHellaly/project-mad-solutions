@@ -92,7 +92,7 @@ const LandPageContent = () => {
               where quality meets creativity.
                 </Typography>
                  
-          <Search sx={{display:'flex',alignItems:'center',width:'250px',borderRadius:'5px',backgroundColor:'#fff'}} >
+          <Search sx={{display:'flex',alignItems:'center',width:'250px',borderRadius:'5px'  }} >
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>

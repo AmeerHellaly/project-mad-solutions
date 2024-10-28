@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Grid, Typography } from '@mui/material'
+import { Box, Button, Grid, Typography,useTheme } from '@mui/material'
 import ReacImage from '../../../../assets/images/Rectangle1.png'
 import vectorImage from '../../../../assets/images/Vector.png'
 import Slider from 'react-slick'
@@ -10,7 +10,14 @@ import Imag2 from '../../../../assets/images/Image-kitchen2.png'
 import Imag3 from '../../../../assets/images/Image-kitchen3.png'
 import Imag4 from '../../../../assets/images/Image-kitchen4.png'
 import { Link } from 'react-router-dom'
+import "../../../../assets/theme/darkmode/sliders.css"
 const Kitchen = () => {
+    const theme=useTheme()
+    const isDarkMode = theme.palette.mode === 'dark';
+    const textColor=isDarkMode?'#FFFFFF':'#121C17';
+    const iconColorFilter = isDarkMode 
+    ? 'brightness(0) saturate(100%) invert(14%) sepia(90%) saturate(749%) hue-rotate(133deg) brightness(100%) contrast(102%)' 
+    : 'none';
     const ImageKitchen=[
         {image:Imag1},
         {image:Imag2},
@@ -41,7 +48,7 @@ const Kitchen = () => {
   return (
     <Grid container spacing={2} sx={{marginBottom:'10px'}}>
     <Grid item xs={12} sm={6}>
-               <Typography variant='h6' sx={{fontWeight:'bold',color:"#121C17",textTransform:'uppercase'}}>
+               <Typography variant='h6' sx={{fontWeight:'bold',color:textColor,textTransform:'uppercase'}}>
                   Kitchen
                    <Box 
                    component={'img'} 
@@ -49,7 +56,8 @@ const Kitchen = () => {
                    sx={{position:'absolute',
                    left:0,
                    width: "30px",
-                   height: "30px"
+                   height: "30px",
+                   filter:iconColorFilter
                        }}/>
                </Typography>
                
@@ -67,7 +75,7 @@ const Kitchen = () => {
                 </Link>
        </Grid>
        <Grid item xs={12} >
-                <Slider {...settings}>
+                <Slider className={isDarkMode ? "slider-dark" : "slider-light"} {...settings}>
                        {ImageKitchen.map((product,index)=>(
                            <div key={index} padding={'0 10px '}>
                                <Box sx={{
