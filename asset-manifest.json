@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/project-mad-solutions/static/css/main.c5cb9ff7.css",
-    "main.js": "/project-mad-solutions/static/js/main.34392b8f.js",
+    "main.css": "/project-mad-solutions/static/css/main.1f8aa5da.css",
+    "main.js": "/project-mad-solutions/static/js/main.204f2f5a.js",
     "reactPlayerPreview.js": "/project-mad-solutions/static/js/reactPlayerPreview.66110043.chunk.js",
     "static/js/453.1bc3a576.chunk.js": "/project-mad-solutions/static/js/453.1bc3a576.chunk.js",
     "static/media/Image4.png": "/project-mad-solutions/static/media/Image4.4f2c65111cec7416ea42.png",
@@ -62,13 +62,13 @@
     "static/media/slick.ttf": "/project-mad-solutions/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/project-mad-solutions/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/project-mad-solutions/index.html",
-    "main.c5cb9ff7.css.map": "/project-mad-solutions/static/css/main.c5cb9ff7.css.map",
-    "main.34392b8f.js.map": "/project-mad-solutions/static/js/main.34392b8f.js.map",
+    "main.1f8aa5da.css.map": "/project-mad-solutions/static/css/main.1f8aa5da.css.map",
+    "main.204f2f5a.js.map": "/project-mad-solutions/static/js/main.204f2f5a.js.map",
     "reactPlayerPreview.66110043.chunk.js.map": "/project-mad-solutions/static/js/reactPlayerPreview.66110043.chunk.js.map",
     "453.1bc3a576.chunk.js.map": "/project-mad-solutions/static/js/453.1bc3a576.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c5cb9ff7.css",
-    "static/js/main.34392b8f.js"
+    "static/css/main.1f8aa5da.css",
+    "static/js/main.204f2f5a.js"
   ]
 }
