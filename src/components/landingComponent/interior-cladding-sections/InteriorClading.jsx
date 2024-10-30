@@ -6,11 +6,13 @@ import Walls from './walls/Walls'
 import Sinks from './sinks/Sinks'
 import Faucets from './faucets/Faucets'
 import  Kitchen  from './kitchen/Kitchen'
+import { useTranslation } from 'react-i18next'
 const InteriorClading = () => {
+  const [t]=useTranslation()
   return (
     <div>
         <Grid container style={{  paddingTop: '0px' }}>
-            <Heading text={'Interior cladding'}/>
+            <Heading text={t('interior-cladding')}/>
             <Grid item xs={12} style={{ padding: '2rem' }}>
                 <Floors/>
                 <Walls/>

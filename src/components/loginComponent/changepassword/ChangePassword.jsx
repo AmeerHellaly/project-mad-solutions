@@ -1,10 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AppBar, Box, Button, InputAdornment, TextField, Toolbar, Typography } from '@mui/material'
 import backgroundImage from '../../../assets/images/Image2.png'
 import logo from '../../../assets/images/logo.png'
 import EmailIcon from '@mui/icons-material/Email';
 import KeyIcon from '@mui/icons-material/Key';
+import { useTranslation } from 'react-i18next';
 const ChangePassword = () => {
+  const [t,i18next]=useTranslation()
+  const langDir=i18next.dir()
+  useEffect(() => {
+    const updateDirection = () => {
+      window.document.dir = i18next.dir();
+    };
+
+    updateDirection(); 
+
+    i18next.on('languageChanged', updateDirection);
+
+    return () => {
+      i18next.off('languageChanged', updateDirection);
+    };
+  }, []);
   return (
       <>
          <AppBar>
@@ -64,7 +80,7 @@ const ChangePassword = () => {
         color:'#000',
         textTransform:'uppercase'
         }}>
-        The Construction and landscaping company
+        {t('construction')}
         </Typography>
          </Box>
     </Box>
@@ -86,10 +102,10 @@ const ChangePassword = () => {
             fontSize:'36px',
             textTransform:'uppercase',
             mb:2
-            }}>change Password</Typography>
+            }}>{t('change-password')}</Typography>
 
         <TextField 
-        label='Email Adress' 
+        label={t('email')}
         variant='outlined'
         fullWidth
         sx={{mb:2}}
@@ -104,7 +120,7 @@ const ChangePassword = () => {
           }} 
          />
         <TextField 
-        label='Password'
+        label={t('password')}
         type='password'
         variant='outlined'
         fullWidth
@@ -120,7 +136,7 @@ const ChangePassword = () => {
           }} 
          />
           <TextField 
-        label='Re-enter Password'
+        label={t('re-password')}
         type='password'
         variant='outlined'
         fullWidth
@@ -138,11 +154,11 @@ const ChangePassword = () => {
          <Typography sx={{
             fontFamily:'Inter',
             fontWeight:500,
-            fontSize:'12px',
+            fontSize:langDir==='rtl'?'18px':'14px',
             textTransform:'uppercase',
             mb:2,
             lineHeight:'18.15px'
-         }}>we will send you a 6 digit code to verify your account</Typography>
+         }}>{t('digit-code')}</Typography>
          <Button variant='contained' fullWidth sx={{
             padding:'10px 0',
             borderRadius:'10px',
@@ -150,7 +166,7 @@ const ChangePassword = () => {
             backgroundColor: '#2BE784', 
             fontSize:'16px',
             color: '#000',
-         }}>Send Code</Button>
+         }}>{t('send-code')}</Button>
         </Box>
         </Box>
         </Box>

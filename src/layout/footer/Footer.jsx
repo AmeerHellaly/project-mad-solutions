@@ -1,54 +1,88 @@
-
-import React from 'react';
-import { Box, Grid, Typography } from '@mui/material';
-import logo from '../../assets/images/logo.png'
-import logoFacebook from '../../assets/images/devicon_facebook.png'
-import logoInstagram from '../../assets/images/skill-icons_instagram.png'
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import logo from "../../assets/images/logo.png";
+import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 
 const Footer = () => {
+  const [t]=useTranslation()
+  const langDir=i18next.dir()
   return (
-    <>
-      <Grid container spacing={4} sx={{  background: "linear-gradient(180deg, #074143 0%, #031C1D 100%)", padding: 2, color: '#fff' }}>
-        <Grid item xs={12} md={3}>
-          <Box component="img" src={logo} sx={{ marginBottom: 2 }} />
-          <Box sx={{ display: 'flex', gap: 1 }}>
-            <Box component="img" src={logoFacebook} sx={{ width: '30px', height: '30px' }} />
-            <Box component="img" src={logoInstagram} sx={{ width: '30px', height: '30px' }} />
+    <Box 
+      sx={{
+        width:"100%",
+        background: "linear-gradient(180deg, #074143 0%, #031C1D 100%)",
+        height: "auto", 
+        padding: 3, 
+        color:"#fff"
+      }}
+    >
+      <Box 
+        display="flex" 
+        flexDirection={{ xs: 'column', md: 'row' }} 
+        justifyContent="space-between" 
+        alignItems="flex-start" 
+        sx={{ flexWrap: 'wrap', marginBottom: 2 }} 
+      >
+        <Box 
+          display="flex" 
+          alignItems="center" 
+          flexDirection={{ xs: 'row', md: 'row' }} 
+          sx={{ margin: 1 }}
+        >
+          <Box>
+            <img src={logo} style={{ width: "50px" }} alt="Logo" />
           </Box>
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 1 }}>
-            Business Hours:
+          <Box sx={{ marginLeft: 1 }}>
+            <Typography sx={{ fontSize:langDir==='rtl'?"24px":"18px", textTransform: "uppercase" }}>
+              {t('construction')}
+            </Typography>
+          </Box>
+        </Box>
+
+        <Box sx={{ margin: 1 }}>
+          <Typography sx={{ textTransform: "uppercase",fontSize:langDir==='rtl'?"20px":"14px" }}>
+          {t('busniess-hour')}<br />
+          {t('date')}<br />
+          {t('saturady-date')}<br />
+          {t('closed')}<br />
           </Typography>
-          <Typography>Monday - Friday: 8 AM - 6 PM</Typography>
-          <Typography>Saturday: 9 AM - 4 PM</Typography>
-          <Typography>Sunday: Closed</Typography>
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 1 }}>
-            Quick Links:
+        </Box>
+        
+        <Box sx={{ margin: 1,fontSize:langDir==='rtl'?"20px":"14px" }}>
+          <Typography sx={{fontSize:langDir==='rtl'?"20px":"16px"}} >
+          {t('quick-links')}
           </Typography>
-          <Typography>• Home</Typography>
-          <Typography>• About Us</Typography>
-          <Typography>• Services</Typography>
-          <Typography>• Projects</Typography>
-          <Typography>• Contact</Typography>
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 1 }}>
-            Awards and Certifications:
+          <ul>
+            <li>{t('home')}</li>
+            <li>{t('about-us')}</li>
+            <li>{t('projects')}</li>
+            <li>{t('contact-us')}</li>
+          </ul>
+        </Box>
+
+        <Box sx={{ margin: 1 }}>
+          <Typography sx={{fontSize:langDir==='rtl'?"20px":"14px"}} >
+          {t('award')}
           </Typography>
-          <Typography>“Proud Member of the National Association of Landscape Professionals”</Typography>
-          <Typography>“Certified Green Builder”</Typography>
-        </Grid>
-      </Grid>
-      <Grid container justifyContent="center" sx={{ backgroundColor: '#043E41', padding: 2, color: '#fff' }}>
-        <Typography variant="body2">
-          © 2024 Z AND N CONSTRUCTION AND LANDSCAPING. ALL RIGHTS RESERVED.
+          <ul>
+            <li>{t('member')}</li>
+            <li>{t('certified')}</li>
+          </ul>
+        </Box>
+      </Box>
+      <Box >
+
+      </Box>
+
+      <Box sx={{ textAlign: 'center', padding: 1 }}>
+        <Typography variant="body2" sx={{ fontSize:langDir==='rtl'?"18px":"14px"}}>
+          © {new Date().getFullYear()}  {t('right-revered')}
         </Typography>
-      </Grid>
-    </>
-  );
-};
+      </Box>
+    </Box>
+  )
+}
 
 export default Footer;

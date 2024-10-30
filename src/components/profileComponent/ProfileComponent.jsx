@@ -11,7 +11,7 @@ export default function ProfileComponent({setMyMode}) {
     <Box sx={{
       height:"100vh"
     }}>
-      <NavbarProfile setMyMode={setMyMode}/>
+      <NavbarProfile setMyMode={setMyMode} position={'static'}/>
       <ContentProfile/>
       <LastContent/>
     </Box>

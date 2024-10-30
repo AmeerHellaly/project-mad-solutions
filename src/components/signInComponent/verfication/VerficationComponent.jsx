@@ -1,12 +1,25 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { AppBar, Toolbar, Typography, Box, TextField, Button,useTheme } from '@mui/material';
 import Ellipse1 from '../../../assets/images/Ellipse7.png'
 import Ellipse2 from '../../../assets/images/Ellipse8.png'
 import MessageImage from '../../../assets/images/morphis-mail-with-a-frosted-glass-effect-11.png'
+import { useTranslation } from 'react-i18next';
 const VerficationComponent = () => {
+  const [t,i18next]=useTranslation()
   const theme=useTheme()
   const isDarkMode = theme.palette.mode === 'dark';
   const textColor=isDarkMode?'#FFFFFF':'#121C17';
+  useEffect(() => {
+    const updateDirection = () => {
+      window.document.dir = i18next.dir();
+    };
+
+    updateDirection(); 
+    i18next.on('languageChanged', updateDirection);
+    return () => {
+      i18next.off('languageChanged', updateDirection);
+    };
+  }, []);
   return (
     <>
     <AppBar position="static"  sx={{backgroundColor:'#074143'}}>
@@ -69,10 +82,10 @@ const VerficationComponent = () => {
         />
       </Box>
         <Typography variant="h3" sx={{fontWeight:700,fontFamily:'Inter'}}textAlign={'center'} gutterBottom>
-          PLEASE VERIFY ACCOUNT
+         {t('verify')}
         </Typography>
         <Typography variant="body1" gutterBottom sx={{textTransform:'uppercase',textAlign:"center"}}>
-          Enter the 6 digit code (contains letters and numbers) that we sent <br/> to your email address to verify your new account.
+        {t('verify-code')} <br/> {t('verify-email')}
         </Typography>
 
         <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
@@ -86,12 +99,12 @@ const VerficationComponent = () => {
           ))}
         </Box>
         <Typography variant="body2" sx={{fontWeight:700,fontFamily:'Inter',fontSize:'22px',mt: 2,color:textColor}}  >
-          Valid for 3 minutes
+        {t('verify-valid')}
         </Typography>
-        <Button  sx={{mt:1,color:'#0E7E83'}}>Resend Code</Button>
+        <Button  sx={{mt:1,color:'#0E7E83'}}> {t('verify-resend')}</Button>
         <Button sx={{ mt: 3,backgroundColor:'#2BE784',borderRadius:'10px',border:'1px solid #121C17',p:2,width:{xs:'70%',lg:'30%'} }}  variant="contained" color="#000"
         >
-          VERIFY AND CONTINUE
+           {t('verify-continue')}
         </Button>
    
     </Box>

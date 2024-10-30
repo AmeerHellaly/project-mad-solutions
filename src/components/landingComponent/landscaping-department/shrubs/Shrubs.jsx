@@ -10,7 +10,11 @@ import Imag2 from '../../../../assets/images/image-shrubs2.png'
 import Imag3 from '../../../../assets/images/image-shrubs3.png'
 import Imag4 from '../../../../assets/images/image-shrubs4.png'
 import "../../../../assets/theme/darkmode/sliders.css"
+import { useTranslation } from 'react-i18next'
+import i18next from 'i18next'
 const Shrubs = () => {
+    const [t]=useTranslation()
+    const langDir=i18next.dir()
     const theme=useTheme()
     const isDarkMode = theme.palette.mode === 'dark';
     const textColor=isDarkMode?'#FFFFFF':'#121C17';
@@ -42,28 +46,41 @@ const Shrubs = () => {
         ]
     };
   return (
-    <Grid container spacing={2} sx={{marginBottom:'10px'}}>
-    <Grid item xs={12} sm={6}>
-               <Typography variant='h6' sx={{fontWeight:'bold',color:textColor,textTransform:'uppercase'}}>
-                  Shrubs
+    <Grid container spacing={2} marginBottom={'4rem'}       
+    sx={{ marginBottom: '4rem', padding: '0 20px' }}
+     justifyContent="space-between"
+     alignItems="center"
+     direction="row">
+    <Grid item xs={6} >
+               <Typography variant='h6'   sx={{
+              fontWeight: 'bold',
+              color: textColor,
+              fontSize: langDir==='rtl'?"24px":"16px",
+              textTransform: 'uppercase',
+              display: 'flex',
+              alignItems: 'center',
+              position: 'relative',
+            }}>
+                  {t('shrubs')}
                    <Box 
                    component={'img'} 
                    src={ReacImage}
                    sx={{position:'absolute',
-                   left:0,
+                    left: langDir === 'rtl' ? 'unset' : '-40px',
+                    right: langDir === 'rtl' ? '-40px' : 'unset',
                    width: "30px",
                    height: "30px",
                        }}/>
                </Typography>
                
        </Grid>
-       <Grid item xs={12} sm={6} textAlign={'right'}>
+       <Grid item xs={6} container justifyContent={langDir === 'rtl' ? 'flex-end' : 'flex-end'}>
                <Button variant='contained'
                 sx={{backgroundColor:'#14B05D',
                 color:'#fff'
                 }}
                 >
-                   View All
+                  {t('view-all')}
                    <Box component={'img'}  src={vectorImage} width={'15px'} sx={{m:'5px'}} />
                </Button>
        </Grid>

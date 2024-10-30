@@ -9,21 +9,22 @@ import Image4 from '../../../../assets/images/Image-floor4.png'
 import Image5 from '../../../../assets/images/Image-floor5.png'
 import Image6 from '../../../../assets/images/Image-floor6.png'
 import Image7 from '../../../../assets/images/Image-floor7.png'
+import { useTranslation } from 'react-i18next'
 const ViewAllFloor = ({setMyMode}) => {
-    const productFloor=[
-        {shade:'Light Shade',type:' Butterscotch Oak',image:Image1},
-        {shade:'Dark Shade',type:' Butterscotch Oak',image:Image2},
-        {shade:' Shade',type:' #Type',image:Image3},
-        {shade:' Shade',type:' #Type',image:Image4},
-        {shade:' Shade',type:' #Type',image:Image5},
-        {shade:' Shade',type:' #Type',image:Image6},
-        {shade:' Shade',type:' #Type',image:Image7},
-
-    ]
+  const [t]=useTranslation()
+  const productFloor = [
+    { shade: t('light-shade'), type: t('butter-scotchOak'), image: Image1 },
+    { shade: t('dark-shade'), type: t('butter-scotchOak'), image: Image2 },
+    { shade: t('shade'), type: t('type'), image: Image3 },
+    { shade: t('shade'), type: t('type'), image: Image4 },
+    { shade: t('shade'), type: t('type'), image: Image5 },
+    { shade: t('shade'), type: t('type'), image: Image6 },
+    { shade: t('shade'), type: t('type'), image: Image7 },
+  ];
   return (
     <div>
-        <NavbarProfile setMyMode={setMyMode}/>
-        <Heading backgroundColor={'lightblue'} text={'floors'}/>
+        <NavbarProfile setMyMode={setMyMode} position={'static'}/>
+        <Heading backgroundColor={'lightblue'}  text={t('floor')}/>
         <Grid container spacing={2}>
                 {productFloor.map((product,index)=>(
             <Grid item xs={12} sm={6} md={4} key={index} mt='2%'  >

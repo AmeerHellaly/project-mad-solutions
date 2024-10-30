@@ -10,7 +10,11 @@ import Image2 from '../../../../assets/images/Image-faucets2.png'
 import Image3 from '../../../../assets/images/Image-faucets3.png'
 import Image4 from '../../../../assets/images/Image-faucets4.png'
 import "../../../../assets/theme/darkmode/sliders.css"
+import { useTranslation } from 'react-i18next'
+import i18next from 'i18next'
 const Faucets = () => {
+    const [t]=useTranslation()
+    const langDir=i18next.dir()
     const theme=useTheme()
     const isDarkMode = theme.palette.mode === 'dark';
     const textColor=isDarkMode?'#FFFFFF':'#121C17';
@@ -18,10 +22,10 @@ const Faucets = () => {
     ? 'brightness(0) saturate(100%) invert(14%) sepia(90%) saturate(749%) hue-rotate(133deg) brightness(100%) contrast(102%)' 
     : 'none';
     const ProductsFaucte=[
-        {shade:'Light Shade',type:' Butterscotch Oak',image:Image1},
-        {shade:'Dark Shade',type:' Butterscotch Oak',image:Image2},
-        {shade:' Shade',type:' #Type',image:Image3},
-        {shade:' Shade',type:' #Type',image:Image4},
+        { shade: t('light-shade'), type: t('butter-scotchOak'), image: Image1 },
+    { shade: t('dark-shade'), type: t('butter-scotchOak'), image: Image2 },
+    { shade: t('shade'), type: t('type'), image: Image3 },
+    { shade: t('shade'), type: t('type'), image: Image4 },
     ]
     const settings = {
         dots: false,
@@ -45,15 +49,28 @@ const Faucets = () => {
         ]
     };
   return (
-    <Grid container spacing={2} sx={{marginBottom:'10px'}}>
-    <Grid item xs={12} sm={6}>
-               <Typography variant='h6' sx={{fontWeight:'bold',color:textColor,textTransform:'uppercase'}}>
-                  Faucetes
+    <Grid container spacing={2} marginBottom={'4rem'}       
+    sx={{ marginBottom: '4rem', padding: '0 20px' }}
+     justifyContent="space-between"
+     alignItems="center"
+     direction="row">
+    <Grid item xs={6}>
+               <Typography variant='h6' sx={{
+              fontWeight: 'bold',
+              color: textColor,
+              fontSize: langDir==='rtl'?"24px":"16px",
+              textTransform: 'uppercase',
+              display: 'flex',
+              alignItems: 'center',
+              position: 'relative',
+            }}>
+                  {t('faucetes')}
                    <Box 
                    component={'img'} 
                    src={ReacImage}
                    sx={{position:'absolute',
-                   left:0,
+                    left: langDir === 'rtl' ? 'unset' : '-40px',
+                    right: langDir === 'rtl' ? '-40px' : 'unset',
                    width: "30px",
                    height: "30px",
                    filter:iconColorFilter
@@ -61,13 +78,13 @@ const Faucets = () => {
                </Typography>
                
        </Grid>
-       <Grid item xs={12} sm={6} textAlign={'right'}>
+       <Grid item xs={6} container justifyContent={langDir === 'rtl' ? 'flex-end' : 'flex-end'}>
                <Button variant='contained'
                 sx={{backgroundColor:'#074143',
                 color:'#fff'
                 }}
                 >
-                   View All
+                   {t('view-all')}
                    <Box component={'img'}  src={vectorImage} width={'15px'} sx={{m:'5px'}} />
                </Button>
        </Grid>

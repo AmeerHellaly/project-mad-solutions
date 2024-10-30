@@ -4,13 +4,24 @@ import LanguageDetector from "i18next-browser-languagedetector"
 
 import translationEn from '../locale/en/translation.json'
 import translationAr from '../locale/ar/translation.json'
-
+import translationGe from '../locale/ge/translation.json'
+import translationFr from '../locale/fr/translation.json'
+import translationRu from '../locale/ru/translation.json'
 const resources={
     en:{
         translation:translationEn
     },
     ar:{
         translation:translationAr  
+    },
+    ge:{
+        translation:translationGe
+    },
+    fr:{
+        translation:translationFr
+    },
+    ru:{
+        translation:translationRu
     }
 };
 

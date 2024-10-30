@@ -1,7 +1,9 @@
 import React from 'react'
 import { Grid, Box, Typography, Button ,useMediaQuery,useTheme} from '@mui/material';
 import paleImage from '../../assets/images/pale-851.png';
+import { useTranslation } from 'react-i18next';
 const LastContent = () => {
+  const [t,i18next]=useTranslation()
   const theme=useTheme()
   const isDarkMode = theme.palette.mode === 'dark';
   const backGround=isDarkMode?'#000000':'#FFFFFF';
@@ -26,16 +28,16 @@ const LastContent = () => {
           
           }}>
             <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px", width: "150px", zIndex: "2" }}>
-              Name
+              {t('name')}
             </Typography>
             <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px", width: "150px", zIndex: "2" }}>
-              Country
+            {t('country')}
             </Typography>
             <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px", width: "150px", zIndex: "2" }}>
-              Email
+            {t('email')}
             </Typography>
             <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px", width: "150px", zIndex: "2" }}>
-              Phone
+            {t('phone-number')}
             </Typography>
           </Box>
         )}
@@ -52,43 +54,43 @@ const LastContent = () => {
           {!isSmallScreen ? (
             <>
               <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-                james williams
+              {t('ameer')}
               </Typography>
               <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-                usa - Washington
+              {t('aleppo')}
               </Typography>
               <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-                james96@gmail.com
+              {t('ameer-email')}
               </Typography>
               <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-                +1 202 555 1234
+                {t('phone-ameer')}
               </Typography>
             </>
           ) : (
             <>
               <Typography sx={{ color: "#fff", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-                Name
+              {t('name')}
               </Typography>
               <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-                james williams
+              {t('ameer')}
               </Typography>
               <Typography sx={{ color: "#fff", fontWeight: "600", textTransform: "uppercase", fontSize: "20px", mt: 1 }}>
-                Country
+              {t('country')}
               </Typography>
               <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-                usa - Washington
+              {t('aleppo')}
               </Typography>
               <Typography sx={{ color: "#fff", fontWeight: "600", textTransform: "uppercase", fontSize: "20px", mt: 1 }}>
-                Email
+              {t('email')}
               </Typography>
               <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-                james96@gmail.com
+              {t('ameer-email')}
               </Typography>
               <Typography sx={{ color: "#fff", fontWeight: "600", textTransform: "uppercase", fontSize: "20px", mt: 1 }}>
-                Phone
+              {t('phone-number')}
               </Typography>
               <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-                +1 202 555 1234
+              {t('phone-ameer')}
               </Typography>
             </>
           )}
@@ -104,7 +106,7 @@ const LastContent = () => {
             border: "2px solid #fff",
             margin: "10px",
           }}>
-            Log out
+            {t('logout')}
           </Button>
         </Box>
       </Grid>
