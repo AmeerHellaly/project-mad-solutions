@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { Box, Button, TextField, Typography, Avatar, InputAdornment, AppBar, Toolbar, IconButton, FormControl, InputLabel, Select } from '@mui/material';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Box, Button, TextField, Typography, Avatar, InputAdornment, AppBar, Toolbar, IconButton, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import PersonIcon from '@mui/icons-material/Person';
@@ -12,21 +12,61 @@ import { useTranslation } from 'react-i18next';
 
 const SignUpPage = () => {
   const [t,i18next]=useTranslation()
+
+  const [userName,setUserName]=useState('')
+  const [email,setEmail]=useState('')
+  const [password,setPassword]=useState('')
+  const [resetPasswprd,setResetPassword]=useState('')
+  const [phoneNumber,setPhoneNumber]=useState('')
+  const [city,setCity]=useState('')
+  const [country,setCountry]=useState('')
+  
+  const navigate=useNavigate()
   useEffect(() => {
     const updateDirection = () => {
       window.document.dir = i18next.dir();
     };
-
-    updateDirection(); // تعيين الاتجاه عند التحميل الأول
-
-    // ملاحظة تغير اللغة
-    i18next.on('languageChanged', updateDirection);
-
-    // إزالة المستمع عند التفكيك
+    updateDirection(); 
+    i18next.on('languageChanged', updateDirection);   
     return () => {
       i18next.off('languageChanged', updateDirection);
     };
   }, []);
+
+  const handleSignPage=async()=>{
+    if (!userName || !email || !password || !phoneNumber || !city || !country) {
+      alert(t('please-fill-all-fields'));
+      return;
+  }
+  try{
+    const formData=new FormData()
+    formData.append('full_name', userName);
+    formData.append('phone', phoneNumber);
+    formData.append('address', '123 Main St');
+    formData.append('governorate', country);
+    formData.append('city', city);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('photo', ''); // مسار الصورة إذا كان موجوداً
+ const response = await fetch('https://backendsec3.trainees-mad-s.com/api/register', {
+        method: 'POST',
+        body: formData
+      });
+
+    const data=await response.json()
+    if(response.ok){
+      alert(data.message)
+      navigate('/verfication',{state:{email}})
+    }else{
+      
+        alert(data.message || t('error-occurred'));
+    }
+  }catch(error){
+    console.error('Error:', error);
+    // alert(t('error-occurred'));
+  }
+  }
+
   return (
     <>
       <AppBar position='static' sx={{backgroundColor:'#074143'}}>
@@ -121,6 +161,8 @@ const SignUpPage = () => {
           label={t('email')}
           variant="outlined"
           fullWidth
+          value={email}
+          onChange={(e)=>setEmail(e.target.value)}
           sx={{ marginBottom: '1rem' }}
           slotProps={{
             input: {
@@ -136,6 +178,8 @@ const SignUpPage = () => {
         <TextField
           label={t('phone-number')}
           variant="outlined"
+          value={phoneNumber}
+          onChange={(e)=>setPhoneNumber(e.target.value)}
           fullWidth
           sx={{ marginBottom: '1rem' }}
           slotProps={{
@@ -153,6 +197,8 @@ const SignUpPage = () => {
           label={t('user-name')}
           variant="outlined"
           fullWidth
+          value={userName}
+          onChange={(e)=>setUserName(e.target.value)}
           sx={{ marginBottom: '1rem' }}
           slotProps={{
             input: {
@@ -170,6 +216,8 @@ const SignUpPage = () => {
           type="password"
           variant="outlined"
           fullWidth
+          value={password}
+          onChange={(e)=>setPassword(e.target.value)}
           sx={{ marginBottom: '1rem' }}
           slotProps={{
             input: {
@@ -188,6 +236,8 @@ const SignUpPage = () => {
           variant="outlined"
           fullWidth
           sx={{ marginBottom: '1.5rem' }}
+          value={resetPasswprd}
+          onChange={(e)=>setResetPassword(e.target.value)}
           slotProps={{
             input: {
               startAdornment: (
@@ -201,19 +251,24 @@ const SignUpPage = () => {
         <Box sx={{display: {xs:'block',md:'flex'} ,justifyContent:'center',alignItems:'center'}}>
         <FormControl  sx={{ m: 1, minWidth: 300 }}>
             <InputLabel id='country'>{t('country')}</InputLabel>
-            <Select label="Country">
-
+            <Select value={country} onChange={(e)=>setCountry(e.target.value)}  label="Country">
+              <MenuItem value={'country1'}>Example Governorate</MenuItem>
+              <MenuItem value={'country2'}>Example Governorate1</MenuItem>
+              <MenuItem value={'country3'}>Example Governorate2</MenuItem>
             </Select>
         </FormControl>
-        <FormControl  sx={{ m: 1, minWidth: 300 }}>
-            <InputLabel id='country'>{t('city')}</InputLabel>
-            <Select  label="Country">
+        <FormControl    ol  sx={{ m: 1, minWidth: 300 }}>
+            <InputLabel id='city'>{t('city')}</InputLabel>
+            <Select  labelId='city' value={city} onChange={(e)=>setCity(e.target.value)}  label="City">
+            <MenuItem value={'city1'}>Example City</MenuItem>
+            <MenuItem value={'city2'}>Example City1</MenuItem>
+            <MenuItem value={'city3'}>Example City2</MenuItem>
             </Select>
         </FormControl>
         </Box>
-        <Link to='/verfication' style={{width:'300px'}}>
+
         <Button 
-          
+          onClick={handleSignPage}
           variant="contained"
           fullWidth
           sx={{
@@ -231,7 +286,6 @@ const SignUpPage = () => {
         >
          {t('create-account')}
         </Button>
-        </Link>
      
 
         

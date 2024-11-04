@@ -1,55 +1,63 @@
 import React, { useEffect, useState } from 'react'
 import { AppBar, Box, Button, InputAdornment, TextField, Toolbar, Typography } from '@mui/material'
-import backgroundImage from '../../../assets/images/Image2.png'
-import logo from '../../../assets/images/logo.png'
-import EmailIcon from '@mui/icons-material/Email';
+import backgroundImage from '../../../../../assets/images/Image2.png'
+import logo from '../../../../../assets/images/logo.png'
 import KeyIcon from '@mui/icons-material/Key';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-const ChangePassword = () => {
-  const [t,i18next]=useTranslation()
-  const [email,setEmail]=useState('')
-  const navigate=useNavigate()
-  const langDir=i18next.dir()
-  useEffect(() => {
-    const updateDirection = () => {
-      window.document.dir = i18next.dir();
-    };
+const ConfirmPassword = () => {
+    const [t,i18next]=useTranslation()
+    const [password,setPassword]=useState()
+    const [confirmPassword,setConfirmPassword]=useState()
+    const [message, setMessage] = useState('');
+    const langDir=i18next.dir()
+    const navigate=useNavigate()
+    useEffect(() => {
+      const updateDirection = () => {
+        window.document.dir = i18next.dir();
+      };
+  
+      updateDirection(); 
+  
+      i18next.on('languageChanged', updateDirection);
+  
+      return () => {
+        i18next.off('languageChanged', updateDirection);
+      };
+    }, []);
+    const handleConfirm=async()=>{
+        if (password !== confirmPassword) {
+            setMessage('Passwords do not match');
+            return;
+        }
+        try{
+            const formData = new FormData();
+            formData.append('password', password);
+            formData.append('password_confirmation', confirmPassword);
+            const response = await fetch('https://backendsec3.trainees-mad-s.com/api/user/password/reset-password', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+                body: formData
+            });
 
-    updateDirection(); 
+            const data = await response.json();
+            if (response.ok && data.message === 'Password reset successfully.') {
+                setMessage('Password reset successfully.');
+                navigate('/profile')
 
-    i18next.on('languageChanged', updateDirection);
-
-    return () => {
-      i18next.off('languageChanged', updateDirection);
-    };
-  }, []);
-
-  const handleSendCode=async()=>{
-    const formData=new FormData()
-    formData.append('email',email)
-    try{
-      const response= await fetch('https://backendsec3.trainees-mad-s.com/api/user/password/forgot-password',{
-        method:'POST',
-        body:formData
-      })
-      const data= await response.json()
-      console.log(data)
-      if(response.ok){
-        alert(data.message)
-        navigate('/verfication-change',{state:{email}})
-      }
-      else{
-      
-        alert(data.message || t('error-occurred'));
+            } else {
+                setMessage(data.message || 'An error occurred');
+            }
+        }catch(error){
+            console.error('Error:', error);
+            setMessage('An error occurred while resetting the password.');
+        }
     }
-    }catch(error){
-      console.error('Error:', error);
-    }
-  }
   return (
-      <>
-         <AppBar>
+    <div>
+        <AppBar>
       <Toolbar  sx={{
           position: 'absolute',
           top: 0,
@@ -128,30 +136,14 @@ const ChangePassword = () => {
             fontSize:'36px',
             textTransform:'uppercase',
             mb:2
-            }}>{t('change-password')}</Typography>
-
-        <TextField 
-        label={t('email')}
-        variant='outlined'
-        fullWidth
-        value={email}
-        onChange={(e)=>setEmail(e.target.value)}
-        sx={{mb:2}}
-        slotProps={{
-            input: {
-              startAdornment: (
-                <InputAdornment position="start">
-                  <EmailIcon />
-                </InputAdornment>
-              ),
-            },
-          }} 
-         />
+            }}>{t('confirm-password')}</Typography>
         <TextField 
         label={t('password')}
         type='password'
         variant='outlined'
         fullWidth
+        value={password}
+        onChange={(e)=>setPassword(e.target.value)}
         sx={{mb:2}}
         slotProps={{
             input: {
@@ -164,10 +156,12 @@ const ChangePassword = () => {
           }} 
          />
           <TextField 
-        label={t('re-password')}
+        label='confirm-pasword'
         type='password'
         variant='outlined'
         fullWidth
+        value={confirmPassword}
+        onChange={(e)=>setConfirmPassword(e.target.value)}
         sx={{mb:2}}
         slotProps={{
             input: {
@@ -187,19 +181,20 @@ const ChangePassword = () => {
             mb:2,
             lineHeight:'18.15px'
          }}>{t('digit-code')}</Typography>
-         <Button onClick={handleSendCode} variant='contained' fullWidth sx={{
+         <Button onClick={handleConfirm}  variant='contained' fullWidth sx={{
             padding:'10px 0',
             borderRadius:'10px',
             border:'1px solid #121C17',
             backgroundColor: '#2BE784', 
             fontSize:'16px',
             color: '#000',
-         }}>{t('send-code')}</Button>
+         }}>Change Password </Button>
+          {message && <p>{message}</p>}
         </Box>
         </Box>
         </Box>
-        </>
+    </div>
   )
 }
 
-export default ChangePassword
+export default ConfirmPassword

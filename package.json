@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "homepage": "https://ameerhellaly.github.io/project-mad-solutions",
   "private": true,
+  "proxy": "https://backendsec3.trainees-mad-s.com",
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
@@ -23,6 +24,7 @@
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
+
   },
   "scripts": {
     "start": "react-scripts start",

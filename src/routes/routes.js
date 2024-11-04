@@ -1,4 +1,4 @@
-import {  createHashRouter } from "react-router-dom";
+import {  createHashRouter,Navigate } from "react-router-dom";
 import LoginPage from "../pages/loginPage/LoginPage";
 import ChangePasswordPage from "../pages/loginPage/ChangePasswordPage";
 import SignUpPage from "../pages/signInPage/SignUpPage";
@@ -8,6 +8,13 @@ import LandingPage from "../pages/landingPage/LandingPage";
 import ViewAllFloor from "../components/landingComponent/interior-cladding-sections/floors/ViewAllFloor";
 import FloorInformation from "../components/landingComponent/interior-cladding-sections/floors/FloorInformation";
 import LandingComponent from "../components/landingComponent/LandingComponent";
+import VerficationChange from "../components/loginComponent/changepassword/verficationChange/VerficationChange";
+import ConfirmPassword from "../components/loginComponent/changepassword/verficationChange/cofirmPassword/ConfirmPassword";
+function ProtectedRoute({ children }) {
+    const isLoggedIn = localStorage.getItem("token");
+    return isLoggedIn ? children : <Navigate to="/login" />;
+  }
+  
 export const routes=(setMyMode)=>createHashRouter([
     {
         path:'',
@@ -22,6 +29,14 @@ export const routes=(setMyMode)=>createHashRouter([
         element:<ChangePasswordPage/>
     },
     {
+        path:'/verfication-change',
+        element:<VerficationChange/>
+    },
+    {
+        path:'/cofirm-password',
+        element:<ConfirmPassword/>
+    },
+    {
         path:'/sign-up',
         element:<SignUpPage/>
     },
@@ -31,7 +46,10 @@ export const routes=(setMyMode)=>createHashRouter([
     },
     {
         path:'/profile',
-        element:<ProfilePage setMyMode={setMyMode}/>
+        element:<ProtectedRoute>
+
+            <ProfilePage setMyMode={setMyMode}/>
+        </ProtectedRoute>
     },
     {
         path:'/landscaping',

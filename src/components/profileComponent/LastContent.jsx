@@ -2,12 +2,34 @@ import React from 'react'
 import { Grid, Box, Typography, Button ,useMediaQuery,useTheme} from '@mui/material';
 import paleImage from '../../assets/images/pale-851.png';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 const LastContent = () => {
   const [t,i18next]=useTranslation()
   const theme=useTheme()
   const isDarkMode = theme.palette.mode === 'dark';
   const backGround=isDarkMode?'#000000':'#FFFFFF';
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down('md'));
+  const navigate=useNavigate()
+
+  const handleLogout=async()=>{
+    try{
+      const response=await fetch('https://backendsec3.trainees-mad-s.com/api/logout',{
+        method:"GET",
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`, // توكن التصريح
+        },
+      })
+      if(response.ok){
+        localStorage.removeItem('token')
+        navigate('/login')
+      }
+      else {
+        console.error('Logout failed');
+      }
+    }catch(error){
+      console.error('Error during logout:', error);
+    }
+  }
   return (
     <div>
         <Grid container style={{ minHeight: '41.2vh', width: "100%", }}>
@@ -100,7 +122,8 @@ const LastContent = () => {
           right: "0",
           bottom: "0"
         }}>
-          <Button variant='contained' sx={{
+          <Button 
+          onClick={handleLogout} variant='contained' sx={{
             color: "#fff",
             backgroundColor: "red",
             border: "2px solid #fff",
