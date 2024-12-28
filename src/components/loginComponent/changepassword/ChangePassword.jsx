@@ -26,9 +26,9 @@ const ChangePassword = () => {
   }, []);
 
   const handleSendCode=async()=>{
-    const formData=new FormData()
-    formData.append('email',email)
     try{
+      const formData=new FormData()
+      formData.append('email',email)
       const response= await fetch('https://backendsec3.trainees-mad-s.com/api/user/password/forgot-password',{
         method:'POST',
         body:formData

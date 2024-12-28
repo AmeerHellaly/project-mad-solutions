@@ -69,7 +69,6 @@ const VerficationChange = () => {
         try {
           const formData = new FormData();
           formData.append('email', email);
-    
           const response = await fetch('https://backendsec3.trainees-mad-s.com/api/resend-verification-code', {
             method: 'POST',
             headers: {

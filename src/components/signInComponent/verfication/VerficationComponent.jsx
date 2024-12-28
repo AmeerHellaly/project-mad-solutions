@@ -76,11 +76,10 @@ const VerificationComponent = () => {
       const response = await fetch('https://backendsec3.trainees-mad-s.com/api/resend-verification-code', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`, // توكن التصريح
+          'Authorization': `Bearer ${localStorage.getItem('token')}`, 
         },
         body: formData,
       });
-
       const data = await response.json();
       console.log("Resend response data:", data);
 

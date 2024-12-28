@@ -93,27 +93,27 @@ const LastContent = () => {
               <Typography sx={{ color: "#fff", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
               {t('name')}
               </Typography>
-              <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
+              {/* <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
               {t('ameer')}
-              </Typography>
+              </Typography> */}
               <Typography sx={{ color: "#fff", fontWeight: "600", textTransform: "uppercase", fontSize: "20px", mt: 1 }}>
               {t('country')}
               </Typography>
-              <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
+              {/* <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
               {t('aleppo')}
-              </Typography>
+              </Typography> */}
               <Typography sx={{ color: "#fff", fontWeight: "600", textTransform: "uppercase", fontSize: "20px", mt: 1 }}>
               {t('email')}
               </Typography>
-              <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
+              {/* <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
               {t('ameer-email')}
-              </Typography>
+              </Typography> */}
               <Typography sx={{ color: "#fff", fontWeight: "600", textTransform: "uppercase", fontSize: "20px", mt: 1 }}>
               {t('phone-number')}
               </Typography>
-              <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
+              {/* <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
               {t('phone-ameer')}
-              </Typography>
+              </Typography> */}
             </>
           )}
         </Box>
