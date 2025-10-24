@@ -9,6 +9,7 @@ import LogoImage from '../../assets/images/logo.png';
 import BackgroundImage from '../../assets/images/Image3.png';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import { useTranslation } from 'react-i18next';
+import { hasFormSubmit } from '@testing-library/user-event/dist/utils';
 
 const SignUpPage = () => {
   const [t,i18next]=useTranslation()
@@ -47,20 +48,9 @@ const SignUpPage = () => {
     formData.append('city', city);
     formData.append('email', email);
     formData.append('password', password);
-    formData.append('photo', ''); // مسار الصورة إذا كان موجوداً
- const response = await fetch('https://backendsec3.trainees-mad-s.com/api/register', {
-        method: 'POST',
-        body: formData
-      });
+    formData.append('photo', '');
 
-    const data=await response.json()
-    if(response.ok){
-      alert(data.message)
-      navigate('/verfication',{state:{email}})
-    }else{
-      
-        alert(data.message || t('error-occurred'));
-    }
+    navigate("/profile")
   }catch(error){
     console.error('Error:', error);
     // alert(t('error-occurred'));
@@ -266,7 +256,7 @@ const SignUpPage = () => {
             </Select>
         </FormControl>
         </Box>
-
+          
         <Button 
           onClick={handleSignPage}
           variant="contained"
@@ -286,6 +276,7 @@ const SignUpPage = () => {
         >
          {t('create-account')}
         </Button>
+     
      
 
         

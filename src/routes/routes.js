@@ -18,10 +18,6 @@ import ConfirmPassword from "../components/loginComponent/changepassword/verfica
 export const routes=(setMyMode)=>createHashRouter([
     {
         path:'',
-        element:''
-    },
-    {
-        path:'/login',
         element:<LoginPage/>
     },
     {

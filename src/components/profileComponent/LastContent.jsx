@@ -12,23 +12,24 @@ const LastContent = () => {
   const navigate=useNavigate()
 
   const handleLogout=async()=>{
-    try{
-      const response=await fetch('https://backendsec3.trainees-mad-s.com/api/logout',{
-        method:"GET",
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`, 
-        },
-      })
-      if(response.ok){
-        localStorage.removeItem('token')
-        navigate('/login')
-      }
-      else {
-        console.error('Logout failed');
-      }
-    }catch(error){
-      console.error('Error during logout:', error);
-    }
+    navigate("/")
+    // try{
+    //   const response=await fetch('https://backendsec3.trainees-mad-s.com/api/logout',{
+    //     method:"GET",
+    //     headers: {
+    //       'Authorization': `Bearer ${localStorage.getItem('token')}`, 
+    //     },
+    //   })
+    //   if(response.ok){
+    //     localStorage.removeItem('token')
+    //     navigate('/login')
+    //   }
+    //   else {
+    //     console.error('Logout failed');
+    //   }
+    // }catch(error){
+    //   console.error('Error during logout:', error);
+    // }
   }
   return (
     <div>
