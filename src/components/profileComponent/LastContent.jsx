@@ -4,7 +4,7 @@ import paleImage from '../../assets/images/pale-851.png';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 const LastContent = () => {
-  const [t,i18next]=useTranslation()
+  const [t, ]=useTranslation()
   const theme=useTheme()
   const isDarkMode = theme.palette.mode === 'dark';
   const backGround=isDarkMode?'#000000':'#FFFFFF';
@@ -16,7 +16,7 @@ const LastContent = () => {
       const response=await fetch('https://backendsec3.trainees-mad-s.com/api/logout',{
         method:"GET",
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`, // توكن التصريح
+          'Authorization': `Bearer ${localStorage.getItem('token')}`, 
         },
       })
       if(response.ok){
@@ -75,45 +75,26 @@ const LastContent = () => {
         }}>
           {!isSmallScreen ? (
             <>
-              {/* <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-              {t('ameer')}
-              </Typography>
-              <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-              {t('aleppo')}
-              </Typography>
-              <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-              {t('ameer-email')}
-              </Typography>
-              <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-                {t('phone-ameer')}
-              </Typography> */}
+    
             </>
           ) : (
             <>
               <Typography sx={{ color: "#fff", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
               {t('name')}
               </Typography>
-              {/* <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-              {t('ameer')}
-              </Typography> */}
+
               <Typography sx={{ color: "#fff", fontWeight: "600", textTransform: "uppercase", fontSize: "20px", mt: 1 }}>
               {t('country')}
               </Typography>
-              {/* <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-              {t('aleppo')}
-              </Typography> */}
+  
               <Typography sx={{ color: "#fff", fontWeight: "600", textTransform: "uppercase", fontSize: "20px", mt: 1 }}>
               {t('email')}
               </Typography>
-              {/* <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-              {t('ameer-email')}
-              </Typography> */}
+ 
               <Typography sx={{ color: "#fff", fontWeight: "600", textTransform: "uppercase", fontSize: "20px", mt: 1 }}>
               {t('phone-number')}
               </Typography>
-              {/* <Typography sx={{ color: "#14B05D", fontWeight: "600", textTransform: "uppercase", fontSize: "20px" }}>
-              {t('phone-ameer')}
-              </Typography> */}
+  
             </>
           )}
         </Box>

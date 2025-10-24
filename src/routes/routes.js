@@ -10,10 +10,10 @@ import FloorInformation from "../components/landingComponent/interior-cladding-s
 import LandingComponent from "../components/landingComponent/LandingComponent";
 import VerficationChange from "../components/loginComponent/changepassword/verficationChange/VerficationChange";
 import ConfirmPassword from "../components/loginComponent/changepassword/verficationChange/cofirmPassword/ConfirmPassword";
-function ProtectedRoute({ children }) {
-    const isLoggedIn = localStorage.getItem("token");
-    return isLoggedIn ? children : <Navigate to="/login" />;
-  }
+// function ProtectedRoute({ children }) {
+//     const isLoggedIn = localStorage.getItem("token");
+//     return isLoggedIn ? children : <Navigate to="/login" />;
+//   }
   
 export const routes=(setMyMode)=>createHashRouter([
     {
@@ -46,10 +46,9 @@ export const routes=(setMyMode)=>createHashRouter([
     },
     {
         path:'/profile',
-        element:<ProtectedRoute>
+        element:<ProfilePage setMyMode={setMyMode}/>
+        
 
-            <ProfilePage setMyMode={setMyMode}/>
-        </ProtectedRoute>
     },
     {
         path:'/landscaping',

@@ -32,30 +32,30 @@ const LoginComponent = () => {
       password
     }
 
-    try {
-      const response = await fetch('https://backendsec3.trainees-mad-s.com/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json', // تغيير إلى application/json
-        },
-        body: JSON.stringify(credentials),
-      });
-        console.log(response)
-      if (!response.ok) {
-        throw new Error('Login failed');
-      }
-      const data = await response.json();
-      if (data.access_token) {
-        const token = data.access_token;
+    // try {
+    //   const response = await fetch('https://backendsec3.trainees-mad-s.com/api/login', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json', // تغيير إلى application/json
+    //     },
+    //     body: JSON.stringify(credentials),
+    //   });
+    //     console.log(response)
+    //   if (!response.ok) {
+    //     throw new Error('Login failed');
+    //   }
+    //   const data = await response.json();
+    //   if (data.access_token) {
+    //     const token = data.access_token;
 
-        localStorage.setItem('token', token);
-        navigate('/profile')
-      } else {
-        throw new Error('Invalid response format');
-      }
-    } catch (error) {
-      setError('Login failed. Please check your credentials and try again.');
-    }
+    //     localStorage.setItem('token', token);
+    //     navigate('/profile')
+    //   } else {
+    //     throw new Error('Invalid response format');
+    //   }
+    // } catch (error) {
+    //   setError('Login failed. Please check your credentials and try again.');
+    // }
 }
 
   return (
@@ -148,7 +148,7 @@ const LoginComponent = () => {
             {t("chnage-password")}
             </Link>
           </Typography>
-         
+         <Link to={'/profile'}>
             <Button
               type='submit'
               fullWidth
@@ -157,6 +157,7 @@ const LoginComponent = () => {
             >
                {t("login")}
             </Button>
+         </Link>
             </form>
           </Box>
         </Box>
